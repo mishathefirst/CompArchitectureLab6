@@ -1,0 +1,84 @@
+A51 MACRO ASSEMBLER  MAIN                                                                 11/19/2020 06:27:39 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+NO OBJECT MODULE REQUESTED
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE main.a51 SET(SMALL) DEBUG PRINT(.\Listings\main.lst) OBJECT(.\Objects\m
+                      ain.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+----                   1      iseg at 30h
+                       2      Stack ds 4
+*** __________________________^
+*** ERROR #A9 IN 2 (main.a51, LINE 2): SYNTAX ERROR
+                       3     
+----                   4       cseg at 0  
+0000 803E              5       jmp start
+                       6     
+----                   7       cseg at 3h 
+0003 804C              8       jmp intt00 
+                       9     
+----                  10       cseg at 40h
+0040                  11     start: 
+0040                  12             mov SP, #?Stack - 1 
+*** __________________________________________^
+*** ERROR #A45 IN 12 (main.a51, LINE 12): UNDEFINED SYMBOL (PASS-2)
+0043 D200             13             setb TMOD
+*** ______________________________________^
+*** ERROR #A48 IN 13 (main.a51, LINE 13): DATA-ADDRESS EXPECTED
+0045 D28A             14             setb IT1
+0047 D2A9             15             setb ET0
+0049 D28C             16             setb TR0 
+004B D2AF             17             setb  EA 
+004D                  18     Cikl:  
+004D 2400             19             add a,#0x100
+*** ________________________________________^
+*** WARNING #A52 IN 19 (main.a51, LINE 19): VALUE HAS BEEN TRUNCATED TO 8 BITS
+004F 80FC             20             Jmp cikl           
+                      21             
+0051                  22     intt00:  
+0051 C0E0             23             push ACC   
+0053 C0D0             24         push PSW
+0055 E5B0             25             mov a, P3
+0057 6004             26             jz PA
+0059 E500             27             mov a, 0
+005B 8002             28             jmp OI
+005D                  29             PA:
+005D E501             30                     mov a, 1
+005F                  31             OI:
+005F F5B0             32                     mov P3, a
+0061 D0D0             33                     Pop PSW
+0063 D0E0             34                     Pop ACC
+0065 32               35                     Reti
+                      36     end
+A51 MACRO ASSEMBLER  MAIN                                                                 11/19/2020 06:27:39 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+?STACK . . . . . .    ----   -----       
+ACC. . . . . . . .  D ADDR   00E0H   A   
+CIKL . . . . . . .  C ADDR   004DH   A   
+EA . . . . . . . .  B ADDR   00A8H.7 A   
+ET0. . . . . . . .  B ADDR   00A8H.1 A   
+INTT00 . . . . . .  C ADDR   0051H   A   
+IT1. . . . . . . .  B ADDR   0088H.2 A   
+OI . . . . . . . .  C ADDR   005FH   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+PA . . . . . . . .  C ADDR   005DH   A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+SP . . . . . . . .  D ADDR   0081H   A   
+STACK. . . . . . .    ----   -----       
+START. . . . . . .  C ADDR   0040H   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  1 WARNING(S), 3 ERROR(S)
