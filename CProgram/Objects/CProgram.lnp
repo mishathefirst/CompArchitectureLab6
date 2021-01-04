@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\CProgram" 
+PRINT(".\Listings\CProgram.m51") RAMSIZE(256) 
